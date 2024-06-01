@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inria_Sans } from "next/font/google";
 import "./globals.css";
+import SideBar from "@/components/SideBar";
+import SupabaseProvider from "@/providers/UserProvider";
+import UserProvider from "@/providers/UserProvider";
+import ModalProvider from "@/providers/ModalProvider";
 
 const font = Inria_Sans({
   weight: "400",
@@ -49,7 +53,15 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff"></meta>
       </head>
-      <body className={font.className}>{children}</body>
+      <body className={`${font.className} h-full w-full`}>
+        <SupabaseProvider>
+          <UserProvider>
+            <SideBar>{children}</SideBar>
+            <ModalProvider />
+    
+          </UserProvider>
+        </SupabaseProvider>
+      </body>
     </html>
   );
 }
