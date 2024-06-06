@@ -1,22 +1,23 @@
+import  { Toaster } from 'react-hot-toast';
+
 import type { Metadata, Viewport } from "next";
 import { Inria_Sans } from "next/font/google";
 import "./globals.css";
 import SideBar from "@/components/SideBar";
-import SupabaseProvider from "@/providers/UserProvider";
+import SupabaseProvider from "@/providers/SupabaseProvider";
 import UserProvider from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
 
 const font = Inria_Sans({
   weight: "400",
   style: "normal",
-  subsets: ["latin"],
+  subsets: ["latin-ext"],
 });
 
 export const metadata: Metadata = {
   title: "musifly",
   description: "listen to musifly!",
-  manifest: "/manifest.json",
-  themeColor: "#171717",
+  
 };
 
 export const viewport: Viewport = {
@@ -48,17 +49,19 @@ export default function RootLayout({
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/manifest.json" />
+      
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff"></meta>
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
       </head>
       <body className={`${font.className} h-full w-full`}>
         <SupabaseProvider>
           <UserProvider>
-            <SideBar>{children}</SideBar>
+          <Toaster />
             <ModalProvider />
-    
+            <SideBar>
+              {children}
+            </SideBar>
           </UserProvider>
         </SupabaseProvider>
       </body>
