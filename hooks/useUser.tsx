@@ -4,6 +4,7 @@ import {
   useSessionContext,
   useUser as useSupaUser,
 } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
@@ -29,59 +30,70 @@ export const MyUserContextProvider = (props: Props) => {
     supabaseClient: supabase,
   } = useSessionContext();
   const user = useSupaUser();
+
+
+  const router = useRouter();
   const accessToken = session?.access_token ?? null;
+
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
 
-  const getUserDetails =()=> supabase.from('users').select('*').single();
-  const getSubscription =()=> supabase.from('subscriptions').select('*,prices(*,products(*))')
-  .in('status',['trialing','active'])
-  .single();
+  const getUserDetails = () => supabase.from("users").select("*").single();
+  const getSubscription = () =>
+    supabase
+      .from("subscriptions")
+      .select("*, prices(*,products(*))")
+      .in("status", ["trialing", "active"])
+      .single();
 
-  useEffect(()=>{
 
-    if(user && !isLoadingData  && !userDetails && !subscription){
-        setIsLoadingData(true);
+  const fetchData = ()=>{
+    if (user && !isLoadingData && !userDetails && !subscription) {
+      setIsLoadingData(true);
 
-        Promise.allSettled([getUserDetails(), getSubscription()]).then(
-            (res)=>{
-                const userDetailsPromise = res[0];
-                const sebscriptionPromise = res[1];
+      Promise.allSettled([getUserDetails(), getSubscription()]).then((res) => {
+        const userDetailsPromise = res[0];
+        const sebscriptionPromise = res[1];
 
-                if(userDetailsPromise.status === 'fulfilled'){
-                    setUserDetails(userDetailsPromise.value.data as UserDetails);
-                }
-                if(sebscriptionPromise.status === 'fulfilled'){
-                    setSubscription(sebscriptionPromise.value.data as Subscription);
-                }
+        if (userDetailsPromise.status === "fulfilled") {
+          setUserDetails(userDetailsPromise.value.data as UserDetails);
+        }
+        if (sebscriptionPromise.status === "fulfilled") {
+          setSubscription(sebscriptionPromise.value.data as Subscription);
+        }
 
-                setIsLoadingData(true);
-                
-            }
-        )
-    } else if(!user && !isLoadingUser && !isLoadingData ){
-      setUserDetails(null)
-      setSubscription(null)
+        setIsLoadingData(false);
+      });
+    } else if (!user && !isLoadingUser && !isLoadingData) {
+      setUserDetails(null);
+      setSubscription(null);
     }
-  },[user,isLoadingUser])
+  }
+
+  useEffect(() => {
+
+    fetchData()
+  }, [user, isLoadingUser]);
+
+ 
+  
 
   const value = {
     accessToken,
     user,
     userDetails,
     isLoading: isLoadingUser || isLoadingData,
-    subscription
-  }
+    subscription,
+  };
 
-  return <UserContext.Provider value={value} {...props} />
-
+  return <UserContext.Provider value={value} {...props} />;
 };
 
-export const useUser =()=>{
+export const useUser = () => {
   const context = useContext(UserContext);
-  if(context === undefined){
-    throw new Error('useUser must be used within a MyUserContextProvider');
+  if (context === undefined) {
+    throw new Error("useUser must be used within a MyUserContextProvider");
   }
   return context;
-}
+};
