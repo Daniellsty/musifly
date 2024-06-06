@@ -8,6 +8,9 @@ import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import Button from "./Button";
 import useAuthModal from "@/hooks/UseAuthModal";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useUser } from "@/hooks/useUser";
+import { FaUserAlt } from "react-icons/fa";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -15,11 +18,23 @@ interface HeaderProps {
 }
 const Header = ({ children, className }: HeaderProps) => {
   const router = useRouter();
+  const authModal = useAuthModal();
+
+  const supabaseClient = useSupabaseClient();
+  const {user} = useUser();
+
+  
 
 
-  const authModal = useAuthModal()
+  const HandleLogout = async () => {
+    const {error} = await supabaseClient.auth.signOut();
+    router.refresh();
 
-  const HandleLogout = () => {};
+    if(error){
+      console.log(error);
+      
+    }
+  };
   return (
     <div
       className={twMerge(
@@ -102,6 +117,27 @@ const Header = ({ children, className }: HeaderProps) => {
             />
         </button>
         </div>
+        {
+          user ? (
+              <div
+             
+              className="flex gap-x-4 items-center">
+                <Button
+                className="bg-white px-6 py-2"
+                 onClick={HandleLogout}
+                >
+                  خروج
+                </Button>
+                <Button
+                onClick={()=> router.push('/account') }
+                className="bg-white"
+                >
+                  <FaUserAlt/>
+                </Button>
+
+              </div>
+          )
+          :
         <div className="flex justify-between items-center gap-x-4
         ">
          <>
@@ -135,6 +171,7 @@ const Header = ({ children, className }: HeaderProps) => {
          
          </>
         </div>
+        }
       </div>
       {children}
     </div>
