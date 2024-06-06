@@ -18,8 +18,8 @@ const Modal = ({
   children,
 }: ModalProps) => {
   return (
-    <Dialog.Root open={isOpen} defaultOpen={isOpen} >
-      <Dialog.Trigger asChild>
+    <Dialog.Root open={isOpen} defaultOpen={isOpen} onOpenChange={onChange} >
+      <Dialog.Portal >
         <Dialog.Overlay
           className="bg-neutral-900/90
         backdrop-blur-sm
@@ -63,7 +63,7 @@ const Modal = ({
             </Dialog.Close>
           </Dialog.Content>
         </Dialog.Overlay>
-      </Dialog.Trigger>
+      </Dialog.Portal>
     </Dialog.Root>
   );
 };
