@@ -1,9 +1,16 @@
 import Header from '@/components/Header'
 import ListItem from '@/components/ListItem'
-import React from 'react'
 import imageTitle from '../../public/images/images (1).png'
+import getSongs from '@/actions/getSongs'
+import PageContent from './components/PageContent'
 
-const page = () => {
+const page =  async () => {
+   
+   const songs = await getSongs();
+//    console.log(songs);
+
+   
+    
   return (
     <div
     className='bg-neutral-900
@@ -44,6 +51,9 @@ const page = () => {
                 !لیست آهنگ ها
             </div>
         </div>
+        <PageContent
+        songs={songs}
+        />
 
     </div>
   )
