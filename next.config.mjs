@@ -24,6 +24,11 @@
  */
 const nextConfig = {
   /* config options here */
+  images:{
+    domains:[
+      "ffqyhqnqeiyrdmytekgf.supabase.co"
+    ]
+  }
 }
  
 export default nextConfig
