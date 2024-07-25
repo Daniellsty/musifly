@@ -5,16 +5,17 @@ import { Song } from "@/types";
 import Image from "next/image";
 
 interface MediaItemProps {
+    isPlaying?:boolean;
     data:Song;
     onClick?:(id:string) => void;
 }
 
-const MediaItem = ({data,onClick}:MediaItemProps) => {
+const MediaItem = ({isPlaying,data,onClick}:MediaItemProps) => {
 
   const imageUrl = useLoadImage(data);
   
   const handleClick =()=>{
-    console.log('clicked');
+    
     
     if(onClick){
         return onClick(data.id)
@@ -28,7 +29,6 @@ const MediaItem = ({data,onClick}:MediaItemProps) => {
     items-center
     gap-x-3
     cursor-pointer
-    hover:bg-neutral-700
     w-full
     p-2
     rounded-md
@@ -37,12 +37,13 @@ const MediaItem = ({data,onClick}:MediaItemProps) => {
     >
 
         <div
-        className="relative
-        rounded-md
+        className={`relative
+        rounded-full
         min-h-[48px]
         min-w-[48px]
         overflow-hidden
-        "
+        ${isPlaying && 'motion-safe:animate-spin' }
+        `}
         >
             <Image
             fill

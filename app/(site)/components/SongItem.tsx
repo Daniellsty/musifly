@@ -14,20 +14,15 @@ interface SongItem {
 }
 
 const SongItem = ({ data, onClick }: SongItem) => {
-
-  const imagePath = useLoadImage(data); 
+  const imagePath = useLoadImage(data);
   const playerId = usePlayer();
- 
-  useEffect(() => {
-    
-    
-  }, []);
 
-  
+  useEffect(() => {}, []);
+
   return (
     <div
-    onClick={()=> onClick(data.id) }
-    className="
+      onClick={() => onClick(data.id)}
+      className="
     relative
     flex 
     flex-col
@@ -37,14 +32,15 @@ const SongItem = ({ data, onClick }: SongItem) => {
     overflow-hidden
     gap-x-4
     cursor-pointer
-    bg-neutral-800
-    hover:bg-neutral-700
+    
+    hover:bg-white/15
     transition
     group
     p-3
     "
     >
-      <div className="
+      <div
+        className="
       relative
       aspect-square
       w-full
@@ -52,42 +48,35 @@ const SongItem = ({ data, onClick }: SongItem) => {
       rounded-md
       overflow-hidden
 
-      ">
-       <Image
-       className="object-cover
+      "
+      >
+        <Image
+          className="object-cover
        
        "
-       fill
-       alt="Image"
-       src={imagePath || '../../../public/images/images (1).png'}
-       />
+          fill
+          alt="Image"
+          src={imagePath || "../../../public/images/images (1).png"}
+        />
       </div>
       <div className="flex flex-col items-start w-full pt-4 gap-y-1 ">
-        <p className="font-semibold truncate w-full">
-            {data.title}
-        </p>
-        <p className="text-neutral-400
+        <p className="text-white font-semibold truncate w-full">{data.title}</p>
+        <p
+          className="text-neutral-400
         text-sm
         pb-4
         w-full
         truncate
-        ">
-            by {data.author}
+        "
+        >
+          by {data.author}
         </p>
       </div>
       <div
-      className="absolute bottom-24
-      right-5"
+        className="absolute bottom-[60%]
+      right-[35%]"
       >
-        {
-          playerId.activeId === data.id ? 
-          <AudioButton/>
-         
-          :
-          
-          <PlayButton/>
-        }
-
+        {playerId.activeId === data.id ? <AudioButton /> : <PlayButton />}
       </div>
     </div>
   );

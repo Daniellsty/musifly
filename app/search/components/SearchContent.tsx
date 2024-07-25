@@ -30,7 +30,7 @@ const SearchContent = ({songs}:SearchContentProps) => {
                 return(
                     <div
                     key={song.id}
-                    className="flex items-center gap-x-4 w-full hover:bg-neutral-700 rounded-lg"
+                    className="flex items-center gap-x-4 w-full hover:bg-white/15 rounded-lg"
                     >
                         <div className="flex-1">
                             <MediaItem

@@ -14,7 +14,7 @@ const Button = forwardRef<HTMLButtonElement,ButtonProps > (({
 },ref) => {
   return (
     <button
-    title="button"
+    title="like"
     type={type}
     className={twMerge(`
     w-full

@@ -21,64 +21,17 @@ const SliderRange :React.FC<SliderRangeProps> = ({value = 1,onChange}) => {
      value={[value]}
      onValueChange={handleChange}
      max={1}
-     step={0.1}
+     step={0.11}
      aria-label='Volume'
-    
+     style={{width:'100px'}}
     className="SliderRoot" >
       <Slider.Track className="SliderTrack">
         <Slider.Range className="SliderRange" />
       </Slider.Track>
-      <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+      <Slider.Thumb  className="SliderThumb" aria-label="Volume" />
     </Slider.Root>
   </form>
 
-    // <RadixSlider.Root
-    // className='relative
-    // flex
-    // items-center
-    // select-none
-    // tounch-none
-    // w-full
-    // h-10
-    // '
-    // defaultValue={[1]}
-    // value={[value]}
-    // onValueChange={handleChange}
-    // max={1}
-    // step={0.1}
-    // aria-label='Volume'
-    // >
-    //     <RadixSlider.Track
-    //     className='bg-neutral-600
-    //     relative
-    //     grow
-    //     rounded-full
-    //     h-[3px]
-    //     flex-grow-1
-    //     '
-    //     >
-
-    //         <RadixSlider.Range
-    //         className='absolute
-    //         bg-white
-    //         rounded-full
-    //         h-full
-            
-    //         '
-    //        />
-    //     </RadixSlider.Track>
-    //    <RadixSlider.Thumb
-    //    className="
-    //    w-[200rem]
-    //    h-[200rem]
-    //    bg-red-400
-    //    rounded-full
-    //    shadow
-    //    focus:outline-none
-    //    hover:bg-slate-100
-    //    " aria-label="Volume" />
-
-    // </RadixSlider.Root>
   )
 }
 

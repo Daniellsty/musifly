@@ -3,9 +3,7 @@
 import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 
-import {RxCaretLeft, RxCaretRight} from 'react-icons/rx'
-import { HiHome } from "react-icons/hi";
-import { BiSearch } from "react-icons/bi";
+
 import Button from "./Button";
 import useAuthModal from "@/hooks/UseAuthModal";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
@@ -40,83 +38,13 @@ const Header = ({ children, className }: HeaderProps) => {
       className={twMerge(
         `
     h-fit
-    bg-gradient-to-b
-    from-cyan-800
     p-6
     
     `,
         className
       )}>
-      <div className="w-full mb-4 flex items-center justify-between">
-        <div className="hidden md:flex gap-x-2 items-center">
-        <button 
-          onClick={()=> router.back() }
-          className="rounded-full bg-black
-          flex 
-          justify-center
-          items-center
-          hover:opacity-75
-          transition
-          "
-          title="remove sidebar">
-            <RxCaretLeft
-            size={35}
-            className="text-whtie"
-            />
-          </button>
-          <button 
-         onClick={()=> router.forward() }
-          className="rounded-full bg-black
-          flex 
-          justify-center
-          items-center
-          hover:opacity-75
-          transition
-          "
-          title="remove sidebar">
-            <RxCaretRight
-            size={35}
-            className="text-whtie"
-            />
-          </button>
-        </div>
-        <div className="flex md:hidden gap-x-2 items-center">
-        <button
-        title="home icon"
-        className="rounded-full
-        flex
-        items-center
-        justify-center
-        hover:opacity-75
-        transition
-        bg-white
-        p-2
-        "
-        >
-            <HiHome
-            className="text-black"
-            size={20}
-            />
-        </button>
-
-        <button
-        title="home icon"
-        className="rounded-full
-        flex
-        items-center
-        justify-center
-        hover:opacity-75
-        transition
-        bg-white
-        p-2
-        "
-        >
-            <BiSearch
-            className="text-black"
-            size={20}
-            />
-        </button>
-        </div>
+      <div className="w-full mb-4 flex items-center justify-end">
+       
         {
           user ? (
               <div

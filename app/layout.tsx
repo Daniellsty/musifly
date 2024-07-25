@@ -7,6 +7,7 @@ import SideBar from "@/components/SideBar";
 import SupabaseProvider from "@/providers/SupabaseProvider";
 import UserProvider from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
+import Player from '@/components/MusicPlayer/Player';
 
 const font = Inria_Sans({
   weight: "400",
@@ -62,6 +63,7 @@ export default function RootLayout({
             <SideBar>
               {children}
             </SideBar>
+            <Player/>
           </UserProvider>
         </SupabaseProvider>
       </body>
