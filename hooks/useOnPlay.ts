@@ -3,7 +3,6 @@ import usePlayer from "./usePlayer"
 
 const useOnPlay = (songs:Song[]) => {
 
-    console.log('get');
     
     const player = usePlayer();
 
