@@ -2,11 +2,13 @@ import { FaPlay } from "react-icons/fa"
 
 
 const PlayButton = () => {
+
+
   return (
 
    <button
    title="play"
-   className="transition
+   className={`transition
    opacity-0
    rounded-full
    flex
@@ -20,7 +22,7 @@ const PlayButton = () => {
    group-hover:translate-y-0
    hover:scale-110
 
-   "
+   `}
    >
     <FaPlay
     className="text-black"

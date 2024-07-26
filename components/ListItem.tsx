@@ -11,10 +11,8 @@ interface ListItemProps {
 }
 
 const ListItem = ({ image, name, href }: ListItemProps) => {
-  console.log(href);
-
+ 
   const router = useRouter();
-
   const onclick = () => {
     router.push(href);
   };

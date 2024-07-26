@@ -15,7 +15,8 @@ interface LikedContentProps {
 const LikedContent = ({ songs }: LikedContentProps) => {
   const router = useRouter();
   const { isLoading, user } = useUser();
-  const onPlay = useOnPlay(songs)
+  const onPlay = useOnPlay(songs);
+
   
   useEffect(() => {
     if (!isLoading && !user) {
@@ -58,7 +59,8 @@ const LikedContent = ({ songs }: LikedContentProps) => {
                     gap-x-4
                     w-full
                     rounded-lg
-                    hover:bg-neutral-700
+                    cursor-pointer
+                    hover:bg-white/15
                     ">
             <div className="flex-14">
               <MediaItem onClick={(id:string) => onPlay(id)} data={song} />

@@ -17,3 +17,9 @@ body
     padding: 0;
     box-sizing: border-box;
 }
+
+body::-webkit-scrollbar-thumb{
+    background-color: red;
+    width: 5px;
+    border-radius: 10px;
+}

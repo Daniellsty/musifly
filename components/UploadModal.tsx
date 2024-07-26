@@ -38,8 +38,7 @@ const UploadModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
-    console.log(values);
-    
+ 
     try {
       setIsLoading(true);
       const imageFile = values.image?.[0];
@@ -62,6 +61,8 @@ const UploadModal = () => {
           });
 
       if (imageError) {
+        console.log(imageError);
+        
         setIsLoading(false);
         return toast.error("کاور شما آپلود نشد");
       }
@@ -115,13 +116,15 @@ const UploadModal = () => {
     } catch (error) {
       console.log(error);
 
-      toast.error(". سرعت اینترنتتان خیلی پایین است");
+      toast.error(". سرعت اینترنتتان خیلی ضعیف  است");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
+    <div>
+
     <Modal
       title="بارگذاری آهنگ"
       description=".خود را وارد کنید mp3 فایل"
@@ -168,6 +171,7 @@ const UploadModal = () => {
         </Button>
       </form>
     </Modal>
+    </div>
   );
 };
 

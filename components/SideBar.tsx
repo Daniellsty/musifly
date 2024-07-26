@@ -8,7 +8,7 @@ import Box from "./Box";
 import SideBarItems from "./SideBarItems";
 import Library from "./Library";
 import { Song } from "@/types";
-import SliderSongs from './SliderSongs';
+import SliderSongs from "./SliderSongs";
 
 
 interface SideBarProps {

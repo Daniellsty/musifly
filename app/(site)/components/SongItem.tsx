@@ -23,6 +23,7 @@ const SongItem = ({ data, onClick }: SongItem) => {
     <div
       onClick={() => onClick(data.id)}
       className="
+    group
     relative
     flex 
     flex-col
@@ -32,8 +33,7 @@ const SongItem = ({ data, onClick }: SongItem) => {
     overflow-hidden
     gap-x-4
     cursor-pointer
-    
-    hover:bg-white/15
+  bg-white/15
     transition
     group
     p-3
@@ -47,11 +47,13 @@ const SongItem = ({ data, onClick }: SongItem) => {
       h-full
       rounded-md
       overflow-hidden
+      group-hover:bg-opacity-10
 
       "
       >
         <Image
           className="object-cover
+          bg-
        
        "
           fill

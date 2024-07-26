@@ -1,14 +1,15 @@
-import getLikedSongs from "@/actions/getLikedSongs";
 import Header from "@/components/Header";
 import Image from "next/image";
 import LikedContent from "./components/LikedContent";
 import LikedImage from '../../public/images/images (1).png'
+import getLikedSongs from "@/actions/getLikedSongs";
 
 
 export const revalidate = 0;
 
 const Liked =  async () => {
-  const songs = await getLikedSongs()
+  const songs = await getLikedSongs();
+  
   return (
     <div className="
     rounded-lg

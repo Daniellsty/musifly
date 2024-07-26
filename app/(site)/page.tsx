@@ -6,15 +6,14 @@ import PageContent from "./components/PageContent";
 
 const page = async () => {
   const songs = await getSongs();
-
+ 
   return (
     <div
       className="
     rounded-lg
     w-full
-    min-h-full
-    overflow-hidden
-    overflow-y-auto
+    h-full
+    
     
     "
     >

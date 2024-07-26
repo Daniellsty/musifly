@@ -5,13 +5,20 @@ import { AiOutlinePlus } from "react-icons/ai";
 import useAuthModal from "@/hooks/UseAuthModal";
 import { useUser } from "@/hooks/useUser";
 import useUploadModal from "@/hooks/useUploadModal";
+import { Song } from "@/types";
+import useOnPlay from "@/hooks/useOnPlay";
+import UserLibrary from "./UserLibrary";
 
-const Library = () => {
+interface LibraryProps {
+  songs:Song[]
+}
+
+const Library = ({songs}:LibraryProps) => {
 
    const authModal = useAuthModal();
-   const uploadModal = useUploadModal()
-   const {user }= useUser()
-
+   const uploadModal = useUploadModal();
+   const {user} = useUser();
+   const onplay = useOnPlay(songs)
 
     const openModal =()=>{
      
@@ -50,7 +57,32 @@ const Library = () => {
       mt-4
       px-3
       ">
-            ! لیست آهنگ ها
+        {
+          !songs.length ?
+          (
+          <div>
+            !هنوز آهنگی وارد نکردید
+          </div>
+        )
+        :
+        (
+          <div>
+          {
+            songs.map((song)=>{
+              return(
+               <UserLibrary
+               key={song.id}
+               onClick={()=> onplay(song.id)}
+               data={song}
+               />
+              )
+            })
+          }
+
+          </div>
+        )
+
+        }
       </div>
     </div>
   );

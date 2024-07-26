@@ -1,8 +1,8 @@
 import { Song } from "@/types";
-import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import { Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -16,16 +16,14 @@ interface SliderSongProps{
 }
 
 const SliderSongs = ({ allSongs }:SliderSongProps) => {
-  
+
  
   return (
-    <div>
-      <div className="my-6 overflow-hidden max-w-[400px] h-[120px]  ">
+   
+      <div className="my-6  max-w-[400px] h-[120px] cursor-pointer -z-0">
       <Swiper
         slidesPerView={3}
         spaceBetween={25}
-        
-       // speed={100}
         centeredSlides={true}
         loop={true}
         className="mySwiper"
@@ -38,13 +36,13 @@ const SliderSongs = ({ allSongs }:SliderSongProps) => {
           
             return (
               <SwiperSlide
-              className="w-full rounded-full"
+              className="rounded-full -z-999"
               >
                 <Image
-                className="object-cover w-full rounded-full "
+                className="  rounded-full -z-999"
                 fill
                 alt="img song"
-                src={imagePath || '../public/images/images (1).png' }
+                src={imagePath ?? '../public/images/images (1).png' }
                 />
               </SwiperSlide>
              
@@ -53,7 +51,6 @@ const SliderSongs = ({ allSongs }:SliderSongProps) => {
         }
       </Swiper>
       </div>
-    </div>
   );
 };
 

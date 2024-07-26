@@ -35,7 +35,6 @@ const MediaItem = ({isPlaying,data,onClick}:MediaItemProps) => {
 
     "
     >
-
         <div
         className={`relative
         rounded-full

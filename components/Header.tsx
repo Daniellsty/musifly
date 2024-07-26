@@ -57,7 +57,7 @@ const Header = ({ children, className }: HeaderProps) => {
                   خروج
                 </Button>
                 <Button
-                onClick={()=> router.push('/account') }
+              
                 className="bg-white"
                 >
                   <FaUserAlt/>

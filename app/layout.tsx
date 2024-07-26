@@ -8,6 +8,8 @@ import SupabaseProvider from "@/providers/SupabaseProvider";
 import UserProvider from "@/providers/UserProvider";
 import ModalProvider from "@/providers/ModalProvider";
 import Player from '@/components/MusicPlayer/Player';
+import getSongsByUserId from '@/actions/getSongsByUserId';
+import getSongs from '@/actions/getSongs';
 
 const font = Inria_Sans({
   weight: "400",
@@ -25,11 +27,17 @@ export const viewport: Viewport = {
   themeColor: "#171717",
 };
 
-export default function RootLayout({
+export const revalidate = 0;
+
+export default async function  RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const userSongs = await getSongsByUserId();
+  const allSongs = await getSongs();
+
   return (
     <html lang="fa">
       <head>
@@ -60,7 +68,10 @@ export default function RootLayout({
           <UserProvider>
           <Toaster />
             <ModalProvider />
-            <SideBar>
+            <SideBar
+           allSongs={allSongs}
+            songs={userSongs}
+            >
               {children}
             </SideBar>
             <Player/>
