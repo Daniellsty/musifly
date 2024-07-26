@@ -8,15 +8,16 @@ interface BoxProps {
 
 const Box = ({children,className}:BoxProps) => {
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full '>
         <div
-        className={twMerge(`w-full bg-neutral-900 rounded-lg text-end h-fit
+        className={twMerge(`w-full  rounded-lg text-end h-fit
   `,
   className
   )}>
             
         {children}
         </div>
+      
     </div>
   )
 }

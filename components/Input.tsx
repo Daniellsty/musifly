@@ -13,7 +13,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         flex 
         w-full
         rounded-md
-        bg-neutral-700
+        bg-white/15
         border
         border-transparent
         p-3

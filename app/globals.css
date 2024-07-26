@@ -5,7 +5,21 @@
 html ,
 body
 {
-    height: 100%;
-    background-color: black;
-    color-scheme: dark;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: white;
+    background: linear-gradient( to bottom right , rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: red;
+    width: 5px;
+    border-radius: 10px;
 }

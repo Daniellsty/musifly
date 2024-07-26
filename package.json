@@ -28,6 +28,7 @@
     "react-spinners": "^0.13.8",
     "stripe": "^15.8.0",
     "supabase": "^1.172.2",
+    "swiper": "^11.1.7",
     "tailwind-merge": "^2.3.0",
     "uniqid": "^5.4.0",
     "use-sound": "^4.0.1",
