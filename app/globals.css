@@ -5,8 +5,15 @@
 html ,
 body
 {
- 
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     color: white;
-    height: 100%;  
     background: linear-gradient( to bottom right , rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
