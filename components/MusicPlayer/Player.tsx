@@ -35,14 +35,7 @@ const Player = () => {
       >
         <Index key={songUrl} song={song} songUrl={songUrl} />
       </div>
-      <div
-        className="
-    lg:hidden
-    block
-    "
-      >
-        <h1>content</h1>
-      </div>
+
     </div>
   );
 };

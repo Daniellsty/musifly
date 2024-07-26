@@ -5,12 +5,13 @@ interface SongInfoProps {
     isPlaying :boolean,
     volume:number,
     seekTime:number,
+    loop:boolean,
     onTimeUpdate:(event:any)=> void,
     onLoadedData:(event:any)=> void,
     onEnded:(event:any)=> void,
 }
 
-const SongInfo = ({src,isPlaying,volume,seekTime,onTimeUpdate,onLoadedData,onEnded}:SongInfoProps) => {
+const SongInfo = ({src,isPlaying,loop,volume,seekTime,onTimeUpdate,onLoadedData,onEnded}:SongInfoProps) => {
     const ref = useRef<any>(null );
     if (ref.current) {
       if (isPlaying) {
@@ -34,6 +35,7 @@ const SongInfo = ({src,isPlaying,volume,seekTime,onTimeUpdate,onLoadedData,onEnd
     <div>
          <audio
          src={src}
+         loop={loop}
          ref={ref}
          onTimeUpdate={onTimeUpdate}
          onLoadedData={onLoadedData}

@@ -4,7 +4,7 @@ import { Song } from "@/types";
 import MediaItem from "../MediaItem";
 import LikedButton from "../LikedButton";
 
-import { BsPauseFill, BsPlayFill } from "react-icons/bs";
+import { BsArrowRepeat, BsPauseFill, BsPlayFill, BsShuffle } from "react-icons/bs";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 
@@ -27,28 +27,43 @@ const Index = ({ song, songUrl }: IndexProps) => {
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
 
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
   const Icon = isPlaying ? BsPauseFill : BsPlayFill;
   const VolumeIcon = volume ? HiSpeakerWave : HiSpeakerXMark;
+ 
 
+  
   const onPlayNext = () => {
+ 
+    
     setIsPlaying(false);
+    
     if (player.ids.length === 0) {
       return;
     }
-
     const currentIndex = player.ids.findIndex((id) => id === player.activeId);
     const nextSong = player.ids[currentIndex + 1];
+    const shuffleSong = Math.floor(Math.random() * player.ids.length )
+
+    if (shuffle){
+     return player.setId(player.ids[shuffleSong])
+    }
 
     if (!nextSong) {
       return player.setId(player.ids[0]);
     }
 
-    player.setId(nextSong);
+    if(nextSong){
+      player.setId(nextSong);
+     
+    
+    }
+
+
   };
 
   const onPlayPrev = () => {
@@ -59,6 +74,12 @@ const Index = ({ song, songUrl }: IndexProps) => {
 
     const currentIndex = player.ids.findIndex((id) => id === player.activeId);
     const prevSong = player.ids[currentIndex - 1];
+
+    const shuffleSong = Math.floor(Math.random() * player.ids.length )
+
+    if (shuffle){
+     return player.setId(player.ids[shuffleSong])
+    }
 
     if (!prevSong) {
       return player.setId(player.ids[player.ids.length - 1]);
@@ -138,6 +159,13 @@ const Index = ({ song, songUrl }: IndexProps) => {
 
         "
         >
+          <button
+          title="repeat"
+          >
+
+           <BsArrowRepeat size={20} color={repeat ? 'white' : '#a3a3a3'} onClick={() => setRepeat((prev) => !prev)} className="hidden sm:block cursor-pointer" />
+          </button>
+
           <AiFillStepBackward
             onClick={onPlayPrev}
             size={30}
@@ -173,6 +201,12 @@ const Index = ({ song, songUrl }: IndexProps) => {
           cursor-pointer
           "
           />
+          <button
+          title="shuffle"
+          >
+          <BsShuffle 
+          size={20} color={shuffle ? 'white' : '#a3a3a3'} onClick={() => setShuffle((prev) => !prev)} className=" cursor-pointer" />
+          </button>
         </div>
         <Seekbar
           value={appTime}
@@ -185,6 +219,7 @@ const Index = ({ song, songUrl }: IndexProps) => {
           isPlaying={isPlaying}
           volume={volume}
           seekTime={seekTime}
+          loop={repeat}
           onEnded={onPlayNext}
           onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
           onLoadedData={(event) => setDuration(event.target.duration)}
