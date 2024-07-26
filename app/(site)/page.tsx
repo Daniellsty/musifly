@@ -37,7 +37,7 @@ const page = async () => {
       <div className="mt-2 mb-7 px-6">
         <div className="flex justify-between items-center">
         </div>
-        <div>!لیست آهنگ ها</div>
+        <div>لیست آهنگ ها</div>
       </div>
       <div className="p-6">
         <PageContent songs={songs} />
